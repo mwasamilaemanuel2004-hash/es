@@ -2,6 +2,9 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '@/hooks/useStore';
 import { marketShell, tradingSystemBlueprint } from '@/lib/market/system-blueprint';
+import { providerCommandCards } from '@/lib/providers/provider-command-cards';
+import { providerSummary } from '@/lib/providers/provider-catalog';
+import { systemHealthStatus } from '@/lib/providers/system-health';
 import './dashboard.scss';
 
 const Dashboard = observer(() => {
@@ -33,6 +36,34 @@ const Dashboard = observer(() => {
                         <strong>{metric.value}</strong>
                         <em>{metric.change}</em>
                     </article>
+                ))}
+            </section>
+
+            <section className='system-health-bar'>
+                <div>
+                    <p className='eyebrow'>System status</p>
+                    <strong>{systemHealthStatus.overall}</strong>
+                </div>
+                <span>{systemHealthStatus.message}</span>
+            </section>
+
+            <section className='provider-row'>
+                {providerCommandCards.map(card => (
+                    <article key={card.title} className={`provider-card provider-card--${card.tint}`}>
+                        <span className='provider-card__tag'>{card.tag}</span>
+                        <strong>{card.title}</strong>
+                        <em>{card.value}</em>
+                    </article>
+                ))}
+            </section>
+
+            <section className='provider-list'>
+                {providerSummary.map(provider => (
+                    <div key={provider.name} className={`provider-status provider-status--${provider.status}`}>
+                        <span className='provider-status__name'>{provider.label}</span>
+                        <span className='provider-status__state'>{provider.state}</span>
+                        <span className='provider-status__latency'>{provider.latencyMs} ms</span>
+                    </div>
                 ))}
             </section>
 
@@ -211,4 +242,3 @@ const Dashboard = observer(() => {
 });
 
 export default Dashboard;
-
