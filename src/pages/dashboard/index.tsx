@@ -3,7 +3,9 @@ import { observer } from 'mobx-react-lite';
 import { useStore } from '@/hooks/useStore';
 import { marketShell, tradingSystemBlueprint } from '@/lib/market/system-blueprint';
 import { providerCommandCards } from '@/lib/providers/provider-command-cards';
+import { providerStatusList } from '@/lib/providers/provider-status';
 import { providerSummary } from '@/lib/providers/provider-catalog';
+import { executionProfile, executionProfileSummary } from '@/lib/execution/execution-profile';
 import { systemHealthStatus } from '@/lib/providers/system-health';
 import './dashboard.scss';
 
@@ -63,6 +65,47 @@ const Dashboard = observer(() => {
                         <span className='provider-status__name'>{provider.label}</span>
                         <span className='provider-status__state'>{provider.state}</span>
                         <span className='provider-status__latency'>{provider.latencyMs} ms</span>
+                    </div>
+                ))}
+            </section>
+
+            <section className='execution-panel'>
+                <div className='execution-panel__header'>
+                    <div>
+                        <p className='eyebrow'>Execution model</p>
+                        <h2>{executionProfileSummary.modeLabel}</h2>
+                    </div>
+                    <span className='execution-pill'>{executionProfileSummary.guardLabel}</span>
+                </div>
+
+                <div className='execution-grid'>
+                    <div className='execution-item'>
+                        <span>Mode</span>
+                        <strong>{executionProfile.mode}</strong>
+                    </div>
+                    <div className='execution-item'>
+                        <span>Risk band</span>
+                        <strong>{executionProfile.riskBand}</strong>
+                    </div>
+                    <div className='execution-item'>
+                        <span>Order size</span>
+                        <strong>{executionProfile.defaultOrderSize} BTC</strong>
+                    </div>
+                    <div className='execution-item'>
+                        <span>Max exposure</span>
+                        <strong>{executionProfile.maxExposurePct}%</strong>
+                    </div>
+                </div>
+
+                <p className='execution-summary'>{executionProfileSummary.riskCaption}</p>
+            </section>
+
+            <section className='provider-detail-list'>
+                {providerStatusList.map(provider => (
+                    <div key={provider.name} className='provider-detail-row'>
+                        <span>{provider.label}</span>
+                        <strong>{provider.readiness}</strong>
+                        <em>{provider.latencyMs} ms</em>
                     </div>
                 ))}
             </section>

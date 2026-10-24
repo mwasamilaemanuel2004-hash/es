@@ -27,7 +27,10 @@
 .system-health-bar,
 .provider-row,
 .provider-card,
-.provider-status {
+.provider-status,
+.execution-panel__header,
+.execution-grid,
+.provider-detail-row {
     display: flex;
     align-items: center;
 }
@@ -38,7 +41,9 @@
 .allocation-row,
 .signal-item__title-row,
 .system-health-bar,
-.provider-status {
+.provider-status,
+.execution-panel__header,
+.provider-detail-row {
     justify-content: space-between;
 }
 
@@ -112,7 +117,9 @@
 .signal-item,
 .provider-card,
 .system-health-bar,
-.provider-status {
+.provider-status,
+.execution-panel,
+.provider-detail-row {
     background: rgba(15, 23, 42, 0.72);
     border: 1px solid rgba(148, 163, 184, 0.16);
     box-shadow: 0 14px 40px rgba(2, 6, 23, 0.18);
@@ -259,6 +266,92 @@
 
 .provider-status--offline {
     border-color: rgba(148, 163, 184, 0.18);
+}
+
+.execution-panel {
+    padding: 18px;
+    border-radius: 18px;
+}
+
+.execution-panel__header {
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.execution-pill {
+    display: inline-flex;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(84, 215, 208, 0.08);
+    border: 1px solid rgba(84, 215, 208, 0.16);
+    color: #8ef5eb;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.execution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.execution-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.execution-item span {
+    font-size: 0.66rem;
+    color: #a7bacd;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.execution-item strong {
+    font-size: 1rem;
+}
+
+.execution-summary {
+    margin: 14px 0 0;
+    color: #d7e7ff;
+    font-size: 0.8rem;
+}
+
+.provider-detail-list {
+    display: grid;
+    gap: 10px;
+}
+
+.provider-detail-row {
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 0.76rem;
+    background: rgba(15, 23, 42, 0.58);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.provider-detail-row span {
+    flex: 1;
+    color: #edf3ff;
+}
+
+.provider-detail-row strong {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    color: #8ef5eb;
+}
+
+.provider-detail-row em {
+    font-style: normal;
+    color: #cfe1ff;
 }
 
 .jarvis-dashboard__content {
@@ -599,7 +692,9 @@ th {
     .panel-header,
     .order-actions,
     .system-health-bar,
-    .provider-status {
+    .provider-status,
+    .execution-panel__header,
+    .provider-detail-row {
         flex-direction: column;
         align-items: flex-start;
     }
