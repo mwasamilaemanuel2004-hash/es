@@ -1,3 +1,4 @@
+export * from './final-phase/final-phase-system';
 export * from './admin/admin-auth';
 export * from './admin/token-vault';
 export * from './assistant/buddy-ai';
