@@ -1,5 +1,4 @@
-import { observer } from 'mobx-react-lite';
-import { useStore } from '../../hooks/useStore';
+import BrokerConnect from '@/components/broker-connect';
 
 const Dashboard = observer(() => {
     const { ui } = useStore();
@@ -8,6 +7,8 @@ const Dashboard = observer(() => {
         <div style={{ paddingTop: '12px' }}>
             <div>Dashboard observing from mobx store.</div>
             <div>isAuthorized: {isAuthorized.toString()}</div>
+
+            <BrokerConnect />
         </div>
     );
 });
