@@ -1,0 +1,102 @@
+@use 'components/shared/styles/themes' as *;
+
+:root {
+    --mwasa-clay-bg: rgba(255, 255, 255, 0.7);
+    --mwasa-clay-shadow: rgba(149, 157, 165, 0.18);
+    --mwasa-glass-bg: rgba(255, 255, 255, 0.12);
+    --mwasa-glass-border: rgba(255, 255, 255, 0.38);
+    --mwasa-glass-shadow: rgba(15, 23, 42, 0.18);
+    --mwasa-status-live: #2dd4bf;
+    --mwasa-status-warning: #fbbf24;
+    --mwasa-status-critical: #f87171;
+    --mwasa-status-offline: #a1a1aa;
+}
+
+.mwasa-clay-surface {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(230, 233, 240, 0.68));
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 8px 8px 18px var(--mwasa-clay-shadow), -8px -8px 18px rgba(255, 255, 255, 0.7);
+    border-radius: 22px;
+}
+
+.mwasa-glass-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--mwasa-glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 16px 38px var(--mwasa-glass-shadow);
+    border-radius: 18px;
+}
+
+.mwasa-monitor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.mwasa-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 92px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.mwasa-status-badge[data-state='LIVE'],
+.mwasa-status-badge[data-state='VERIFIED'] {
+    background: rgba(45, 212, 191, 0.12);
+    color: var(--mwasa-status-live);
+}
+
+.mwasa-status-badge[data-state='WARNING'],
+.mwasa-status-badge[data-state='PAPER'] {
+    background: rgba(251, 191, 36, 0.14);
+    color: var(--mwasa-status-warning);
+}
+
+.mwasa-status-badge[data-state='CRITICAL'],
+.mwasa-status-badge[data-state='UNAVAILABLE'] {
+    background: rgba(248, 113, 113, 0.12);
+    color: var(--mwasa-status-critical);
+}
+
+.mwasa-status-badge[data-state='OFFLINE'],
+.mwasa-status-badge[data-state='DISCONNECTED'] {
+    background: rgba(161, 161, 170, 0.15);
+    color: var(--mwasa-status-offline);
+}
+
+.mwasa-kpi-card {
+    padding: 16px 18px;
+    min-height: 120px;
+}
+
+.mwasa-kpi-label {
+    display: block;
+    font-size: 11px;
+    line-height: 1.2;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+}
+
+.mwasa-kpi-value {
+    font-size: clamp(1.4rem, 2vw, 2.1rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-general);
+}
+
+.mwasa-kpi-subtext {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.7;
+}
